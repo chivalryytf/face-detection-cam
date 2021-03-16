@@ -34,8 +34,11 @@ function startVideo() {
   var constraints = { audio: false, video: { width: 720, height: 560 } };
 
   navigator.mediaDevices.getUserMedia(constraints)
-  .then(function(stream) {
+  .then(async function(stream) {
     video.srcObject = stream
+    video.onloadedmetadata = function(e) {
+      await video.play();
+    };
   })
   .catch(function(err) {
     console.log(err.name + ": " + err.message);
