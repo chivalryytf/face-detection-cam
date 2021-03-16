@@ -18,21 +18,12 @@
       align-items: center;
     }
 
-    .video {
-      width: 720px;
-      height: 560px;
-      @media only screen and (max-width: 800px) {
-        width: 100%;
-        height: 560px;
-      }
-    }
-
     canvas {
       position: absolute;
     }
   </style>
 </head>
 <body>
-  <video id="video" class="video" autoplay muted></video>
+  <video id="video" width="720" height="560" class="video" autoplay muted></video>
 </body>
 </html>
