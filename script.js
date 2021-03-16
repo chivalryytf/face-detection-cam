@@ -3,7 +3,6 @@ const video = document.getElementById('video')
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/face-detection-cam/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/face-detection-cam/models'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/face-detection-cam/models'),
   faceapi.nets.faceExpressionNet.loadFromUri('/face-detection-cam/models')
 ]).then(startVideo)
 
