@@ -1,7 +1,4 @@
 const video = document.getElementById('video')
-video.setAttribute('autoplay', '');
-video.setAttribute('muted', '');
-video.setAttribute('playsinline', '');
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('/face-detection-cam/models'),
@@ -32,12 +29,12 @@ function startVideo() {
   // Prefer camera resolution nearest to 1280x720.
   
   var constraints = { audio: false, video: { width: 720, height: 560 } };
-
+  
   navigator.mediaDevices.getUserMedia(constraints)
-  .then(async function(stream) {
+  .then(function(stream) {
     video.srcObject = stream
     video.onloadedmetadata = function(e) {
-      await video.play();
+      video.play();
     };
   })
   .catch(function(err) {
