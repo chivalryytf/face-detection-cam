@@ -7,6 +7,20 @@ Promise.all([
 ]).then(startVideo)
 
 function startVideo() {
+  navigator.mediaDevices = navigator.mediaDevices || ((navigator.mozGetUserMedia || navigator.webkitGetUserMedia) ? {
+    getUserMedia: function(c) {
+      return new Promise(function(y, n) {
+        (navigator.mozGetUserMedia ||
+         navigator.webkitGetUserMedia).call(navigator, c, y, n);
+      });
+    }
+  } : null);
+  
+  if (!navigator.mediaDevices) {
+   console.log("getUserMedia() not supported.");
+   return;
+  }
+  
   navigator.mediaDevices.getUserMedia(
     { video: {} },
     stream => video.srcObject = stream,
